@@ -1,0 +1,109 @@
+snippet js_unit_test
+describe('$1', function() {
+
+    beforeEach(function() {
+        module('$2');
+
+        inject(function(_$injector_) {
+            service = _$injector_.get('$1');
+        });
+    });
+
+    $0
+});
+endsnippet
+
+
+snippet js_unit_before
+        beforeEach(function() {
+		$0
+        });
+endsnippet
+
+
+snippet js_unit_describe
+    describe('$1', function() {
+	    $0
+    });
+endsnippet
+
+
+snippet js_unit_it
+        it('$1', function() {
+            expect(true).toBe(false);
+        });
+
+	$0
+endsnippet
+
+
+snippet js_service
+(function() {
+    'use strict';
+
+    angular
+        .module('$1')
+        .service('$2', $2);
+
+    function $2() {
+        var self = this;
+
+	$0
+
+    }
+
+}());
+endsnippet
+
+
+snippet js_factory
+(function() {
+    'use strict';
+
+    angular
+        .module('$1')
+        .factory('$2', $2);
+
+    function $2() {
+        var self = this;
+
+	$0
+
+    }
+
+}());
+endsnippet
+
+
+snippet js_function
+        function $1($2) {
+		$0
+        }
+endsnippet
+
+
+snippet js_directive
+(function() {
+    'use strict';
+
+    angular
+        .module('$1')
+        .directive('$2', $2);
+
+    function $2() {
+        var ddo = {
+            templateUrl: $3,
+            retrict: 'E'
+	    $0
+        };
+
+        return ddo;
+    }
+
+}());
+endsnippet
+
+
+snippet js_inject
+	$1.$inject = ['$2'];
+endsnippet
