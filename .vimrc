@@ -24,6 +24,7 @@ Plugin 'tpope/vim-fugitive'
 
 "Possui varios recursos, entre eles barra de controle
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 "Adição de dados a linha do tmux
 Plugin 'edkolev/tmuxline.vim'
@@ -134,7 +135,7 @@ set laststatus=2
 "Configuração do airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='molokai'
+let g:airline_theme='base16'
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 "Correção para Erro de Drag do Nerdtree
