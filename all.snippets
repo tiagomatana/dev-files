@@ -134,3 +134,165 @@ gulp.task('$1', function() {
 	$0
 });
 endsnippet
+
+snippet gitignore
+/*/target/
+/*/.settings
+/*/.project
+/*/.classpath
+*.jsfdia
+*.metadata
+**/.idea
+*.iml
+*.swp
+*.swo
+**/unit-result.report.html
+**/node_modules/
+/**/env.properties
+/**/npm-debug.log.*
+endsnippet
+
+snippet gulpfile
+(function() {
+
+    var gulp = require('gulp');
+    var bump = require('gulp-bump');
+    var uglify = require("gulp-uglify");
+    var minify = require('gulp-minify');
+    var concat = require('gulp-concat');
+
+    gulp.task('upgrade-version', function(value) {
+        gulp.src('./package.json')
+            .pipe(bump({
+                version: process.env.npm_config_value
+            }))
+            .pipe(gulp.dest('./'));
+    });
+
+    gulp.task('compress', function() {
+        gulp.src('app/**/*.js')
+            .pipe(concat('$1.js'))
+            .pipe(uglify())
+            .pipe(minify())
+            .pipe(gulp.dest('dist'));
+    });
+
+}());
+endsnippet
+
+snippet package.json
+{
+    "name": "$1",
+    "version": "0.0.1-SNAPSHOT",
+    "description": "$2",
+    "keywords": [
+        "$3"
+    ],
+    "url": "https://github.com/$4/$1",
+    "email": "ccem.projects@gmail.com",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:$4/$1.git"
+    },
+    "scripts": {
+        "test": "karma start karma.conf.js",
+        "gulp": "gulp",
+        "karma": "karma",
+        "build": "gulp compress"
+    },
+    "dependencies": {
+        "angular": "^1.4.7",
+        "angular-resource": "1.5.3"
+    },
+    "devDependencies": {
+        "gulp-concat": "2.6.0",
+        "gulp-minify": "0.0.11",
+        "angular-mocks": "^1.4.9",
+        "concurrently": "^1.0.0",
+        "gulp": "^3.9.1",
+        "gulp-rename": "^1.2.2",
+        "gulp-uglify": "^1.5.1",
+        "gulp-useref": "^3.0.4",
+        "jasmine-core": "^2.4.1",
+        "karma": "^0.13.19",
+        "karma-chrome-launcher": "^0.2.2",
+        "karma-htmlfile-reporter": "^0.2.2",
+        "karma-jasmine": "^0.3.6",
+        "karma-phantomjs-launcher": "^0.2.3",
+        "phantomjs": ">=1.9",
+        "phantomjs-prebuilt": "^2.1.2",
+        "gulp-bump": "2.1.0"
+    }
+}
+
+endsnippet
+
+snippet karma.conf.js
+// Karma configuration
+
+module.exports = function(config) {
+    var NODE_MODULES_ROOT_PATH = 'node_modules/';
+
+
+    config.set({
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: '',
+
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['jasmine'],
+
+        // list of files / patterns to load in the browser
+        files: [
+            /* External dependencies */
+            NODE_MODULES_ROOT_PATH + 'angular/angular.min.js',
+            /* Application files */
+            'app/**/*.js', {
+                pattern: 'tests/unit/**/*-spec.js',
+                included: true
+            }
+        ],
+
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: {},
+
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress', 'html'],
+
+        htmlReporter: {
+            outputFile: 'unit-result.report.html',
+            //Optional
+            pageTitle: 'Unit Tests'
+        },
+        // web server port
+        port: 9876,
+
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
+
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
+
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: false,
+
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['PhantomJS'],
+
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: true,
+
+        // Concurrency level
+        // how many browser should be started simultaneous
+        concurrency: Infinity
+    });
+
+};
+
+endsnippet
