@@ -115,6 +115,9 @@ map <C-o> :NERDTree %<CR>
 " Habilita mouse para uso no VIM
 set mouse=a
 
+" Habilita identação ao salvar a partir do Clipboard
+set paste
+
 "Remoção de arquivos desnecessarios para busca do CtrlP
 let g:ctrlp_custom_ignore = {
       \ 'dir':  '\v[\/]\.(git|hg|svn|target|node_modules)$',
@@ -215,10 +218,9 @@ map <c-f> :call JsBeautify()<cr>
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for json
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-" " for jsx
+" for jsx
 autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-" " for html
+" for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" " for css or scss
+" for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
