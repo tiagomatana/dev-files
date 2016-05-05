@@ -116,7 +116,7 @@ map <C-o> :NERDTree %<CR>
 set mouse=a
 
 " Habilita identação ao salvar a partir do Clipboard
-set paste
+set pastetoggle=<F2>
 
 "Remoção de arquivos desnecessarios para busca do CtrlP
 let g:ctrlp_custom_ignore = {
