@@ -94,7 +94,7 @@ Plugin 'wookiehangover/jshint.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -131,9 +131,6 @@ let g:ctrlp_use_caching=0
 set number
 " Sempre mostra barra de status
 set laststatus=2
-
-"Thema Cores
-"set t_Co=256
 
 "Configuração do airline
 let g:airline_powerline_fonts = 1
@@ -190,6 +187,7 @@ colorscheme solarized
 
 "Configuracoes de uso
 command Xclip '<,'>w !xclip -selection c -i
+map <F7>:w !xclip -selection c -i
 map <C-S-a> <esc>ggVG<CR>
 map <C-S-c> <esc>gg"*yG<CR>
 set clipboard+=unnamedplus
@@ -210,17 +208,23 @@ let g:indentLine_char = '┆'
 let g:indentLine_color_term = 239
 
 "Validação JS Automatica
-let JSHintUpdateWriteOnly=1
+"let JSHintUpdateWriteOnly=1
+let jshint2_read = 1
 
 ".vimrc
 map <c-f> :call JsBeautify()<cr>
-"" or
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for json
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-" for jsx
 autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-" for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
